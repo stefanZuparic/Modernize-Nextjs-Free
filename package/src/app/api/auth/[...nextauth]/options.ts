@@ -31,7 +31,7 @@ async function refreshAccessToken(jwt: JWT) {
 
 export const options: NextAuthOptions = {
   pages: {
-    signIn: "/pub/login",
+    signIn: "/authentication/login",
   },
   providers: [
     CredentialsProvider({
