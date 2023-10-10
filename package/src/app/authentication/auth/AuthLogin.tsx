@@ -99,14 +99,13 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
                   htmlFor="username"
                   mb="5px"
                 >
-                  Username
+                  Korisničko ime
                 </Typography>
                 <Field
                   component={TextField}
                   variant="outlined"
                   name="username"
                   type="text"
-                  label="Korisničko ime"
                   fullWidth
                 ></Field>
               </Box>
@@ -118,13 +117,12 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
                   htmlFor="password"
                   mb="5px"
                 >
-                  Password
+                  Lozinka
                 </Typography>
                 <Field
                   component={TextField}
                   name="password"
                   type="password"
-                  label="Lozinka"
                   fullWidth
                   variant="outlined"
                 />
@@ -138,7 +136,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
                 <FormGroup>
                   <FormControlLabel
                     control={<Checkbox defaultChecked />}
-                    label="Remeber this Device"
+                    label="Zapamti me"
                   />
                 </FormGroup>
                 <Typography
@@ -150,7 +148,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
                     color: "primary.main",
                   }}
                 >
-                  Forgot Password ?
+                  Zaboravili ste lozinku ?
                 </Typography>
               </Stack>
             </Stack>
@@ -163,7 +161,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
                 type="submit"
                 disabled={isSubmitting}
               >
-                Sign In
+                Prijavi se
               </Button>
             </Box>
           </Form>
