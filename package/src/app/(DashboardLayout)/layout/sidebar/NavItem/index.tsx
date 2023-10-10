@@ -12,14 +12,16 @@ import {
 import Link from "next/link";
 
 type NavGroup = {
-  [x: string]: any;
-  id?: string;
-  navlabel?: boolean;
-  subheader?: string;
-  title?: string;
-  icon?: any;
-  href?: any;
-  onClick?: React.MouseEvent<HTMLButtonElement, MouseEvent>;
+  adresa: string;
+  pro_id: number;
+  // [x: string]: any;
+  // id?: string;
+  // navlabel?: boolean;
+  // subheader?: string;
+  // title?: string;
+  // icon?: any;
+  // href?: any;
+  //onClick?: React.MouseEvent<HTMLButtonElement, MouseEvent>;
 };
 
 interface ItemType {
@@ -27,18 +29,19 @@ interface ItemType {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   hideMenu?: any;
   level?: number | any;
-  pathDirect: string;
+  //pathDirect: string;
+  icon: any;
 }
 
-const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
-  const Icon = item.icon;
+const NavItem = ({ item, level, icon, onClick }: ItemType) => {
+  const Icon = icon;
   const theme = useTheme();
   const itemIcon = <Icon stroke={1.5} size="1.3rem" />;
 
   const ListItemStyled = styled(ListItem)(() => ({
     padding: 0,
     ".MuiButtonBase-root": {
-      whiteSpace: "nowrap",
+      whiteSpace: "wrap",
       marginBottom: "2px",
       padding: "8px 10px",
       borderRadius: "8px",
@@ -61,16 +64,9 @@ const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
   }));
 
   return (
-    <List component="div" disablePadding key={item.id}>
+    <List component="div" disablePadding key={item.pro_id}>
       <ListItemStyled>
-        <ListItemButton
-          component={Link}
-          href={item.href}
-          disabled={item.disabled}
-          selected={pathDirect === item.href}
-          target={item.external ? "_blank" : ""}
-          onClick={onClick}
-        >
+        <ListItemButton onClick={onClick}>
           <ListItemIcon
             sx={{
               minWidth: "36px",
@@ -80,9 +76,7 @@ const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
           >
             {itemIcon}
           </ListItemIcon>
-          <ListItemText>
-            <>{item.title}</>
-          </ListItemText>
+          <ListItemText>{item.adresa}</ListItemText>
         </ListItemButton>
       </ListItemStyled>
     </List>
