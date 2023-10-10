@@ -1,7 +1,7 @@
 "use server";
 import axios from "@/app/lib/axios";
 import { getServerSession } from "next-auth";
-import { options } from "../auth/[...nextauth]/options";
+import { options } from "../../api/auth/[...nextauth]/options";
 
 export async function getProstori(obvId: number) {
   const session = await getServerSession(options);

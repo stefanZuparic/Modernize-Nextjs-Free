@@ -10,7 +10,7 @@ import Blog from "@/app/(DashboardLayout)/components/dashboard/Blog";
 import MonthlyEarnings from "@/app/(DashboardLayout)/components/dashboard/MonthlyEarnings";
 import { Prostor } from "../models/prostor";
 import { useEffect, useState } from "react";
-import { getProstori } from "../api/servises/prostorServis";
+import { getProstori } from "../lib/servises/prostorServis";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { Dozvola } from "../models/dozvola";
@@ -24,19 +24,36 @@ const Dashboard = () => {
     },
   });
 
-  const { prostori, prostor, fetchProstor } = useStore();
-  // const [prostori, setProstori] = useState<Prostor[]>([]);
-  const [dozvola, setDozvola] = useState<Dozvola>();
-  // const [prostor, setProstor] = useState<Prostor>();
+  const {
+    dozvola,
+    setDozvola,
+    prostori,
+    prostor,
+    fetchProstor,
+    godine,
+    godina,
+    setGodine,
+    setGodina,
+    racuni,
+    racun,
+    fetchRacuni,
+    setRacun,
+  } = useStore();
 
   useEffect(() => {
     if (session) {
       setDozvola(session?.user.dozvole[0]);
-      fetchProstor(session?.user.dozvole[0].obv_id);
+      fetchProstor(session?.user.dozvole[0].obv_id).then((prostor) => {
+        fetchRacuni(
+          session.user.dozvole[0]?.obv_id!,
+          prostor?.pro_id!,
+          prostor.godine[0]!
+        );
+      });
     }
   }, [session?.user]);
 
-  console.log(prostor);
+  console.log(dozvola, prostor, racun);
   return (
     <PageContainer title="Dashboard" description="this is Dashboard">
       <Box>

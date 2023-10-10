@@ -1,23 +1,38 @@
 import { StateCreator } from "zustand";
 import { Prostor } from "@/app/models/prostor";
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import { getProstori } from "@/app/api/servises/prostorServis";
+import { getProstori } from "@/app/lib/servises/prostorServis";
 
 export interface ProstorSlice {
   prostori: Prostor[];
   prostor: Prostor | undefined;
-  fetchProstor: (obvId: number) => void;
+  godine: number[];
+  godina: number | undefined;
+  fetchProstor: (obvId: number) => Promise<Prostor>;
+  setGodine: (godine: number[]) => void;
+  setGodina: (godina: number) => void;
 }
 
 export const createProstorSlice: StateCreator<ProstorSlice> = (set) => ({
   prostori: [],
   prostor: undefined,
-  fetchProstor: async (obvId: number) => {
+  godine: [],
+  godina: undefined,
+  fetchProstor: async (obvId: number): Promise<Prostor> => {
     const response = await getProstori(obvId);
+    debugger;
+    set({
+      prostori: response,
+      prostor: response[0],
+      godine: response[0].godine,
+      godina: response[0].godine[0],
+    });
 
-    set({ prostori: response, prostor: response[0] });
+    return response[0];
+  },
+  setGodine: async (godine: number[]) => {
+    set({ godine: godine });
+  },
+  setGodina: async (godina: number) => {
+    set({ godina: godina });
   },
 });

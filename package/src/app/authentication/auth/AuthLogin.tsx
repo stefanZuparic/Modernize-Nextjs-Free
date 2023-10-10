@@ -54,7 +54,6 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
     values: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
-    debugger;
     try {
       const result = await signIn("credentials", {
         redirect: false,
