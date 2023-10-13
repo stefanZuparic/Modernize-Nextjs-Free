@@ -16,7 +16,8 @@ const NavGroup = ({ item }: ItemType) => {
     <ListSubheader disableSticky {...props} />
   ))(({ theme }) => ({
     ...theme.typography.overline,
-    fontWeight: "700",
+    fontWeight: "1000",
+    fontSize: 15,
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(0),
     color: theme.palette.text.primary,

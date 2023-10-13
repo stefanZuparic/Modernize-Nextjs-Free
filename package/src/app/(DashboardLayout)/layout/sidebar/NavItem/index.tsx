@@ -47,7 +47,7 @@ const NavItem = ({ item, level, icon, onClick }: ItemType) => {
       borderRadius: "8px",
       backgroundColor: level > 1 ? "transparent !important" : "inherit",
       color: theme.palette.text.secondary,
-      paddingLeft: "10px",
+      paddingLeft: "20px",
       "&:hover": {
         backgroundColor: theme.palette.primary.light,
         color: theme.palette.primary.main,
@@ -76,7 +76,7 @@ const NavItem = ({ item, level, icon, onClick }: ItemType) => {
           >
             {itemIcon}
           </ListItemIcon>
-          <ListItemText>{item.adresa}</ListItemText>
+          <ListItemText>{item.adresa.split(",")[1]}</ListItemText>
         </ListItemButton>
       </ListItemStyled>
     </List>

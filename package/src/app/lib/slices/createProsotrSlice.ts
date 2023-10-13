@@ -19,7 +19,6 @@ export const createProstorSlice: StateCreator<ProstorSlice> = (set) => ({
   godina: undefined,
   fetchProstor: async (obvId: number): Promise<Prostor> => {
     const response = await getProstori(obvId);
-    debugger;
     set({
       prostori: response,
       prostor: response[0],
