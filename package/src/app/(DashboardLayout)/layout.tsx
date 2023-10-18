@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Header from "@/app/(DashboardLayout)/layout/header/Header";
 import Sidebar from "@/app/(DashboardLayout)/layout/sidebar/Sidebar";
 
-
 const MainWrapper = styled("div")(() => ({
   display: "flex",
   minHeight: "100vh",
@@ -23,8 +22,6 @@ const PageWrapper = styled("div")(() => ({
 interface Props {
   children: React.ReactNode;
 }
-
-
 
 export default function RootLayout({
   children,
@@ -55,9 +52,10 @@ export default function RootLayout({
         {/* PageContent */}
         {/* ------------------------------------------- */}
         <Container
+          maxWidth="90%"
           sx={{
-            paddingTop: "20px",
-            maxWidth: "1200px",
+            paddingTop: "15px",
+            maxWidth: "90%",
           }}
         >
           {/* ------------------------------------------- */}

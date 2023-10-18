@@ -2,6 +2,7 @@
 import axios from "@/app/lib/axios";
 import { getServerSession } from "next-auth";
 import { options } from "../../api/auth/[...nextauth]/options";
+import { error } from "console";
 
 export async function getRacuni(obvId: number, proId: number, godina: number) {
   const session = await getServerSession(options);

@@ -8,6 +8,7 @@ export interface ProstorSlice {
   godine: number[];
   godina: number | undefined;
   fetchProstor: (obvId: number) => Promise<Prostor>;
+  setProstor: (prostor: Prostor) => Promise<Prostor>;
   setGodine: (godine: number[]) => void;
   setGodina: (godina: number) => void;
 }
@@ -27,6 +28,14 @@ export const createProstorSlice: StateCreator<ProstorSlice> = (set) => ({
     });
 
     return response[0];
+  },
+  setProstor: async (prostor: Prostor): Promise<Prostor> => {
+    set({
+      prostor: prostor,
+      godine: prostor.godine,
+      godina: prostor.godine[0],
+    });
+    return prostor;
   },
   setGodine: async (godine: number[]) => {
     set({ godine: godine });

@@ -24,21 +24,7 @@ const Dashboard = () => {
     },
   });
 
-  const {
-    dozvola,
-    setDozvola,
-    prostori,
-    prostor,
-    fetchProstor,
-    godine,
-    godina,
-    setGodine,
-    setGodina,
-    racuni,
-    racun,
-    fetchRacuni,
-    setRacun,
-  } = useStore();
+  const { setDozvola, fetchProstor, fetchRacuni, fetchServisi } = useStore();
 
   useEffect(() => {
     if (session) {
@@ -48,17 +34,23 @@ const Dashboard = () => {
           session.user.dozvole[0]?.obv_id!,
           prostor?.pro_id!,
           prostor.godine[0]!
-        );
+        ).then((racun) => {
+          fetchServisi(
+            session?.user.dozvole[0].obv_id!,
+            prostor.pro_id!,
+            racun.rgId,
+            racun.rzId
+          );
+        });
       });
     }
   }, [session?.user]);
 
-  console.log(dozvola, prostor, racun);
   return (
     <PageContainer title="Dashboard" description="this is Dashboard">
       <Box>
         <Grid container spacing={3}>
-          <Grid item xs={12} lg={8}>
+          {/* <Grid item xs={12} lg={8}>
             <SalesOverview />
           </Grid>
           <Grid item xs={12} lg={4}>
@@ -70,16 +62,16 @@ const Dashboard = () => {
                 <MonthlyEarnings />
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            <RecentTransactions />
-          </Grid>
-          <Grid item xs={12} lg={8}>
+          </Grid> */}
+          <Grid item xs={12} lg={6}>
             <ProductPerformance />
           </Grid>
-          <Grid item xs={12}>
-            <Blog />
+          <Grid item xs={12} lg={6}>
+            <RecentTransactions />
           </Grid>
+          {/* <Grid item xs={12}>
+            <Blog />
+          </Grid> */}
         </Grid>
       </Box>
     </PageContainer>
